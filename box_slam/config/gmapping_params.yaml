@@ -1,0 +1,30 @@
+map_update_interval: 1.5  #지도 업데이트 주기(1.5초에 한번씩)
+maxUrange: 12.0           #라이다 최대 유효거리(미터) ->12미터 이상의 데이터는 무시하겠다
+maxRange: 4.0
+sigma: 0.05               
+kernelSize: 1             
+lstep: 0.05
+astep: 0.05
+iterations: 5
+lsigma: 0.075
+ogain: 3.0
+lskip: 0
+minimumScore: 200          #50정도면 평범한 지도 200이면 엄격하게 깔끔한 지도를 생성
+srr: 0.1                   #이동에 대한 이동 오차
+srt: 0.2                   #회전에 대한 이동 오차
+str: 0.1
+stt: 0.2
+linearUpdate: 0.2            #로봇이 0.2m 이동하면 필터 업데이트
+angularUpdate: 0.2           #로봇이 0.2 라디안(11.5도) 회전하면 필터 업데이트
+temporalUpdate: 1.0          #1초가 지나면 필터 업데이트
+resampleThreshold: 0.5
+particles: 30
+xmin: -1.0                  #지도의 초기 크기(2m*2m)
+ymin: -1.0
+xmax: 1.0
+ymax: 1.0
+delta: 0.05                 #지도의 해상도(5cm/픽셀)
+llsamplerange: 0.01
+llsamplestep: 0.01
+lasamplerange: 0.005
+lasamplestep: 0.005

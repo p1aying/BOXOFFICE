@@ -1,0 +1,15 @@
+<launch>
+  <!-- Robot URDF -->
+  <arg name="model" default="$(find box_description)/urdf/box.urdf"/>
+  <param name="robot_description" textfile="$(arg model)"/>
+  
+  <!-- Box Core Node (실제 로봇 제어) -->
+  <node pkg="box_bringup" type="box_core.py" name="box_core" output="screen">
+    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="baud" value="57600"/>
+  </node>
+  
+  <!-- 로봇 상태 발행 노드들 -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+</launch>

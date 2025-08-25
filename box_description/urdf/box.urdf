@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<robot name="box_robot">
+
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.4 0.0 1.0"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="light_black">
+    <color rgba="0.4 0.4 0.4 1.0"/>
+  </material>
+  <material name="dark_grey">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="-0.25 0 0.36" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="20.0"/>
+      <inertia ixx="1.0" iyy="1.0" izz="1.5" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.5 0.5"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.5 0.5"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel_left_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="2.85"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.02" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <geometry>
+        <cylinder length="0.045" radius="0.0775"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <geometry>
+        <cylinder length="0.045" radius="0.0775"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel_right_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="2.85"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.02" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <geometry>
+        <cylinder length="0.045" radius="0.0775"/>
+      </geometry>
+      <material name="light_black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+      <geometry>
+        <cylinder length="0.045" radius="0.0775"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+  <link name="lidar_stand">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.1"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lidar_stand_joint" type="fixed">
+    <origin xyz="0.225 0 0.25" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_stand"/>
+  </joint>
+
+  <link name="base_scan">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.114"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+  <link name="wheel_left_support">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.1 0.1"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.1 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_left_support_joint" type="fixed">
+    <origin xyz="-0.15 0.2 -0.2" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_left_support"/>
+  </joint>
+
+  
+  <link name="wheel_right_support">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.1 0.1"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.1 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_right_support_joint" type="fixed">
+    <origin xyz="-0.15 -0.2 -0.2" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_right_support"/>
+  </joint>
+
+  <joint name="wheel_left_joint" type="fixed">
+    <origin xyz="-0.15 0.25 -0.25" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_left_link"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="wheel_right_joint" type="fixed">
+    <origin xyz="-0.15 -0.25 -0.25" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="wheel_right_link"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+  </joint>
+
+  <joint name="scan_joint" type="fixed">
+    <origin xyz="0.225 0 0.3" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+  </joint>
+
+  
+  <link name="caster_wheel">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_joint" type="fixed">
+    <origin xyz="0.15 0 -0.26" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel"/>
+  </joint>
+
+</robot>

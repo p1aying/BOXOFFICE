@@ -1,0 +1,23 @@
+<launch>
+  <!-- URDF 파일 경로 -->
+  <arg name="model" default="$(find box_description)/urdf/box.urdf"/>
+  
+  <!-- GUI 옵션 (joint_state_publisher_gui 사용 여부) -->
+  <arg name="gui" default="true" />
+  
+  <!-- RViz 설정 파일 (있으면 사용, 없으면 기본값) -->
+  <arg name="rvizconfig" default="$(find box_description)/rviz/config.rviz" />
+
+  <!-- URDF 파일을 robot_description 파라미터로 로드 -->
+  <param name="robot_description" textfile="$(arg model)" />
+
+  <!-- Joint State Publisher -->
+  <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  
+  <!-- Robot State Publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  
+  <!-- RViz 실행 -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>
